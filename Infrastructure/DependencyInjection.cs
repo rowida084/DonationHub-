@@ -13,7 +13,7 @@ namespace Infrastructure
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("constr")));
+                    configuration.GetConnectionString("DefaultConnection")));
 
             return services;
         }

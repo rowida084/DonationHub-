@@ -38,12 +38,19 @@ namespace Infrastructure.Data.Configurations
             builder.Property(x => x.CreatedAt)
                    .IsRequired();
 
-            //Relationships 
-            builder.HasMany<Donation>()
-                .WithOne().HasForeignKey(x => x.DonorUserId);
+            // Relationships
 
+            // User -> Donations
+            builder.HasMany<Donation>()
+                .WithOne()
+                .HasForeignKey(x => x.DonorUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // User -> Campaigns
             builder.HasMany<Campaign>()
-                .WithOne().HasForeignKey(x => x.CreatedByUserId);
+                .WithOne()
+                .HasForeignKey(x => x.CreatedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("ApplicationUsers");
         }

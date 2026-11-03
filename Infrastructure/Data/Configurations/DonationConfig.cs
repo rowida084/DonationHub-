@@ -52,6 +52,18 @@ namespace Infrastructure.Data.Configurations
             builder.Property(x => x.ReceiptFileName)
                    .IsRequired(false);
 
+            // Campaign Relationship
+            builder.HasOne<Campaign>()
+                .WithMany()
+                .HasForeignKey(x => x.CampaignId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Donor Relationship
+            builder.HasOne<ApplicationUser>()
+                .WithMany()
+                .HasForeignKey(x => x.DonorUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.ToTable("Donations");
         }
     }

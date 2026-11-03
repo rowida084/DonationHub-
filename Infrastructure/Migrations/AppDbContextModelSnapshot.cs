@@ -128,7 +128,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("CreatedByUserId");
 
-                    b.ToTable("Campaigns", (string)null);
+                    b.ToTable("Campaigns");
                 });
 
             modelBuilder.Entity("Domain.Entities.Category", b =>
@@ -222,7 +222,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -231,13 +231,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Campaign", null)
                         .WithMany()
                         .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("DonorUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

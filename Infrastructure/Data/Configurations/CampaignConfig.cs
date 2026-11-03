@@ -64,12 +64,7 @@ namespace Infrastructure.Data.Configurations
             builder.HasIndex(x => x.CategoryId);
             builder.HasIndex(x => x.CreatedByUserId);
 
-            //Relationships
-            builder.HasMany<Donation>()
-               .WithOne()
-               .HasForeignKey(x => x.CampaignId);
-
-            builder.ToTable("Campaigns");
+            
         }
     }
 }

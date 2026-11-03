@@ -73,8 +73,7 @@ namespace Infrastructure.Migrations
                         name: "FK_Campaigns_ApplicationUsers_CreatedByUserId",
                         column: x => x.CreatedByUserId,
                         principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Campaigns_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -105,14 +104,12 @@ namespace Infrastructure.Migrations
                         name: "FK_Donations_ApplicationUsers_DonorUserId",
                         column: x => x.DonorUserId,
                         principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Donations_Campaigns_CampaignId",
                         column: x => x.CampaignId,
                         principalTable: "Campaigns",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
