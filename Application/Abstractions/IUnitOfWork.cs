@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Application.Abstractions
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        Task<int> CompleteAsync();
     }
 }

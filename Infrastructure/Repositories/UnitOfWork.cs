@@ -1,10 +1,21 @@
-﻿using System;
+﻿using Application.Abstractions;
+using Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Infrastructure.Repositories
 {
-    internal class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
+        private readonly AppDbContext _context;
+        public UnitOfWork(AppDbContext context) 
+        {
+            _context = context;
+        }
+        public async Task<int> CompleteAsync()
+        {
+          return  await _context.SaveChangesAsync();
+        }
     }
 }

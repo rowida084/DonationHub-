@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Timers;
+using Domain.Entities.Contract;
 using DonationHub.Domain.Enums;
 
 namespace DonationHub.Domain.Entities
 {
-    public class Donation
+    public class Donation : ISoftDeletable
     {
         public Guid Id { get; private set; }
         public Guid CampaignId { get; private set; }
@@ -16,6 +17,8 @@ namespace DonationHub.Domain.Entities
         public string? FailureReason { get; private set; }
         public int? ReceiptNumber { get; private set; }
         public string? ReceiptFileName { get; private set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? DeletedAtUtc { get; set; }
 
         private Donation() { }
 

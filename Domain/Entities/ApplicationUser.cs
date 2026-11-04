@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities.Contract;
 using Microsoft.AspNetCore.Identity;
 namespace Domain.Entities
 {
-    public class ApplicationUser
+    public class ApplicationUser : ISoftDeletable
     {
         public Guid Id { get; private set; }
         public string? FullName { get; private set; }
@@ -13,6 +14,9 @@ namespace Domain.Entities
         public string PreferredLanguage { get; private set; } = "en";
         public bool IsActive { get; private set; }
         public DateTime CreatedAt { get; private set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? DeletedAtUtc { get; set; }
+
         private ApplicationUser() { }
 
         public static ApplicationUser Create

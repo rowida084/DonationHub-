@@ -31,6 +31,19 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+            modelBuilder.Entity<Campaign>()
+                .HasQueryFilter(e => !e.IsDeleted);
+
+            modelBuilder.Entity<Category>()
+                .HasQueryFilter(e => !e.IsDeleted);
+
+            modelBuilder.Entity<Donation>()
+               .HasQueryFilter(e => !e.IsDeleted);
+
+            modelBuilder.Entity<ApplicationUser>()
+               .HasQueryFilter(e => !e.IsDeleted);
+
         }
     }
 }

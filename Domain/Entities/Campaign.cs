@@ -1,4 +1,5 @@
-﻿using DonationHub.Domain.Entities;
+﻿using Domain.Entities.Contract;
+using DonationHub.Domain.Entities;
 using DonationHub.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class Campaign
+    public class Campaign : ISoftDeletable
     {
         public Guid Id { get; private set; }
         public string TitleAr { get; private set; } = string.Empty;
@@ -23,8 +24,9 @@ namespace Domain.Entities
         public Guid CreatedByUserId { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
-        public bool IsDeleted { get; private set; }
+        public bool IsDeleted { get; set; }
         public byte[]? RowVersion { get; private set; }
+        public DateTime? DeletedAtUtc { get; set; }
 
         private Campaign()
         {

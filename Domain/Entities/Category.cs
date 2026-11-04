@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.Entities.Contract;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Entities
 {
-    public class Category
+    public class Category : ISoftDeletable
     {
         public Guid Id { get;private set; }
         public string? NameAr {  get; private set; }
@@ -13,6 +14,8 @@ namespace Domain.Entities
         public string? DescriptionEn { get; private set; }
         public DateTime CreatedAt {  get; private set; }
         public DateTime UpdatedAt { get; private set; }
+        public bool IsDeleted { get ; set ; }
+        public DateTime? DeletedAtUtc { get ; set; }
 
         private Category() { }
 
