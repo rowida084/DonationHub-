@@ -1,4 +1,5 @@
 using Application;
+using Application.Options;
 using Domain.Entities;
 using Infrastructure;
 using Infrastructure.Data;
@@ -12,6 +13,24 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services
+    .AddOptions<JwtOptions>()
+    .BindConfiguration(JwtOptions.SectionName)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+builder.Services
+    .AddOptions<DonationOptions>()
+    .BindConfiguration(DonationOptions.SectionName)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+builder.Services
+    .AddOptions<SeedAdminOptions>()
+    .BindConfiguration(SeedAdminOptions.SectionName)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
 
 var app = builder.Build();
 
