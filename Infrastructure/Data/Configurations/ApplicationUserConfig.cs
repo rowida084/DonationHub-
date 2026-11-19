@@ -17,11 +17,13 @@ namespace Infrastructure.Data.Configurations
             builder.HasKey(x => x.Id);
 
             //Email
-            builder.HasIndex(x=>x.Email).IsUnique();
+            builder.HasIndex(x=>x.NormalizedEmail).IsUnique();
+            builder.Property(x=> x.NormalizedEmail).IsRequired();
             builder.Property(x => x.Email).IsRequired();
 
             //Username
-            builder.HasIndex(x => x.UserName).IsUnique();
+            builder.HasIndex(x => x.NormalizedUserName).IsUnique();
+            builder.Property(x => x.NormalizedUserName).IsRequired();
             builder.Property(x=>x.UserName).IsRequired();
 
             //Full Name 

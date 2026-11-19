@@ -5,12 +5,14 @@ using Domain.Entities.Contract;
 using Microsoft.AspNetCore.Identity;
 namespace Domain.Entities
 {
-    public class ApplicationUser : ISoftDeletable
+    public class ApplicationUser : IdentityUser<Guid> , ISoftDeletable
     {
-        public Guid Id { get; private set; }
+        //public Guid Id { get; private set; }
+       
+       // public string? UserName { get; private set; }
+       // public string? Email { get; private set; }
+       
         public string? FullName { get; private set; }
-        public string? UserName { get; private set; }
-        public string? Email { get; private set; }
         public string PreferredLanguage { get; private set; } = "en";
         public bool IsActive { get; private set; }
         public DateTime CreatedAt { get; private set; }

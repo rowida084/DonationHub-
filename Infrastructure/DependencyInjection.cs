@@ -1,9 +1,12 @@
 ﻿
 using Application.Abstractions;
 using Application.Abstractions.Repositories;
+using Domain.Entities;
 using Infrastructure.Data;
-using Infrastructure.Repositories;
+using Infrastructure.Identity;
 using Infrastructure.Interceptors;
+using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,19 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             services.AddSingleton<SoftDeleteInterceptor>();
+            services.AddDataProtection();
+            services.AddIdentityCore<ApplicationUser>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireDigit = true;
+                options.User.RequireUniqueEmail = true;
+            }
+            ).AddRoles<IdentityRole<Guid>>()
+            .AddEntityFrameworkStores<AppDbContext>()
+             .AddDefaultTokenProviders();
+
 
             services.AddDbContext<AppDbContext>((serviceProvider, options) =>
             {
@@ -32,6 +48,7 @@ namespace Infrastructure
                 typeof(GenericRepository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IdentitySeeder>();
 
             return services;
         }

@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
 using DonationHub.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Data
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) 
-        : DbContext(options)
+        : IdentityDbContext<ApplicationUser,IdentityRole<Guid>,Guid>(options)
     {
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Category> Categories { get; set; }
